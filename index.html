@@ -57,6 +57,13 @@
             header {
                 padding: 10px;
             }
+            .sidebar-toggle {
+                display: block; /* Show the collapse sidebar button on smaller screens */
+            }
+            .sidebar1.collapsed, .sidebar2.collapsed {
+                width: 0;
+                overflow: hidden;
+            }
         }
         /* Updated styles for browsers */
         .container {
@@ -76,63 +83,93 @@
             max-width: 1200px;
             margin: 0 auto; /* Centers the viewer */
         }
+
+        /* Responsive YouTube video */
+        .youtube-container {
+            position: relative;
+            max-width: 100%;
+            overflow: hidden;
+            padding-top: 56.25%; /* Aspect ratio 16:9 */
+        }
+        .youtube-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 100%;
+        }
         /* Add this style to your existing CSS */
-.code-container {
-    max-height: 400px; /* Set the maximum height for the code container */
-    overflow: auto; /* Enable vertical scrolling */
-    border: 1px solid #ddd; /* Add a border for a clean look */
-    border-radius: 5px; /* Optional: Add rounded corners */
-    padding: 10px; /* Add padding for better readability */
-}
+        .code-container {
+            max-height: 400px; /* Set the maximum height for the code container */
+            overflow: auto; /* Enable vertical scrolling */
+            border: 1px solid #ddd; /* Add a border for a clean look */
+            border-radius: 5px; /* Optional: Add rounded corners */
+            padding: 10px; /* Add padding for better readability */
+        }
 
-/* Optional: Highlight line numbers in the code container */
-.code-container pre {
-    margin: 0;
-    padding: 0;
-    white-space: pre-wrap;
-    font-family: 'Courier New', Courier, monospace;
-}
+        /* Optional: Highlight line numbers in the code container */
+        .code-container pre {
+            margin: 0;
+            padding: 0;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
 
-.code-container pre code {
-    display: block;
-    background-color: #f8f8f8;
-    line-height: 1.6;
-    padding: 10px;
-    border-radius: 5px;
-}
+        .code-container pre code {
+            display: block;
+            background-color: #f8f8f8;
+            line-height: 1.6;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        /* CSS, um die Sidebar einzuklappen */
+        .sidebar1.collapsed {
+            width: 0;
+            overflow: hidden;
+        }
+        .sidebar2.collapsed {
+            width: 0;
+            overflow: hidden;
+        }
+
+        .file-navigator {
+            flex: 1;
+            overflow: auto;
+            transition: width 0.3s ease; /* Optional: Fügt eine Übergangseffekt hinzu */
+        }
 
     </style>
 </head>
 <body>
-    <div class="viewer">
-        <header>
-            <div class="logo">
-                <a href="https://jugendforscht.de"><img id="logo1" src="jf_logo.png" alt="Logo 1"></a>
+<div class="viewer">
+    <header>
+        <div class="logo">
+            <a href="https://jugendforscht.de"><img id="logo1" src="jf_logo.png" alt="Logo 1"></a>
+        </div>
+        <div class="logo">
+            <a href="https://ohg-nagold.de"><img id="logo2" src="ohg_logo.png" alt="Logo 2"></a>
+        </div>
+    </header>
+    <div class="container1">
+        <div class="content">
+            <h1>Schulsani Alarmierung</h1>
+            <p>"In diesem Jugend-forscht-Projekt wird das Alarmierungssystem für Schulsanitäter an einer Schule verbessert. Das bisherige Verfahren erforderte, dass im Falle eines Unfalls während des Unterrichts oder in der Pause ein Schüler den Lehrer informiert, der dann das Sekretariat kontaktiert. Von dort aus wurden die Schulsanitäter per Lautsprecher gerufen und erhielten die Raumangabe. Dieses Verfahren wurde als zu umständlich empfunden, weshalb eine effizientere Lösung entwickelt wurde. Der Ansatz umfasst den Einsatz eines Raspberry Pi als Server und mehrerer ESP32-Geräte als Pager. Zur Programmierung werden C/C++, NodeRed sowie HTML/CSS/JavaScript für die Gestaltung der Webseite verwendet. Im Falle eines Alarms ertönt ein Signalton über einen Buzzer. Die ESP32-Geräte werden in Gehäusen untergebracht, damit die Schulsanitäter sie stets in das jeweilige Klassenzimmer mitnehmen können."</p>
+            <div class="youtube-container">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/0G_qQjxMCC4?si=PQHD1rPQsIA9EpiO&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
-            <div class="logo">
-                <a href="https://ohg-nagold.de"><img id="logo2" src="ohg_logo.png" alt="Logo 2"></a>
-            </div>
-        </header>
-        <div class="container1">
-            <div class="content">
-                <h1>Schulsani Alarmierung</h1>
-                <p>"In diesem Jugend-forscht-Projekt wird das Alarmierungssystem für Schulsanitäter an einer Schule verbessert. Das bisherige Verfahren erforderte, dass im Falle eines Unfalls während des Unterrichts oder in der Pause ein Schüler den Lehrer informiert, der dann das Sekretariat kontaktiert. Von dort aus wurden die Schulsanitäter per Lautsprecher gerufen und erhielten die Raumangabe. Dieses Verfahren wurde als zu umständlich empfunden, weshalb eine effizientere Lösung entwickelt wurde. Der Ansatz umfasst den Einsatz eines Raspberry Pi als Server und mehrerer ESP32-Geräte als Pager. Zur Programmierung werden C/C++, NodeRed sowie HTML/CSS/JavaScript für die Gestaltung der Webseite verwendet. Im Falle eines Alarms ertönt ein Signalton über einen Buzzer. Die ESP32-Geräte werden in Gehäusen untergebracht, damit die Schulsanitäter sie stets in das jeweilige Klassenzimmer mitnehmen können."</p>
-                <div class="youtube-container">
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/0G_qQjxMCC4?si=PQHD1rPQsIA9EpiO&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                </div>
-                            
-
         </div>
         <section>
             <div class="section-content">
-                <h2>Genutze Gegenstände</h2>
+                <h2>Genutzte Gegenstände</h2>
                 <p>Diese Dinge würden im Projekt genutzt:</p>
                 <ul>
                     <li><a href="https://www.idealo.de/preisvergleich/OffersOfProduct/200939546_-4-model-b-4gb-full-starter-kit-raspberry-pi-foundation.html">Raspberry Pi 4 Kit (Pi4 + Case + SD Card + Ladekabel)</a></li>
                     <li><a href="https://www.amazon.de/dp/B09J112YR7/ref=twister_B0B92JHXYN?_encoding=UTF8&psc=1">2 TTGO S3</a></li>
                     <li><a href="https://www.ebay.de/itm/354645204935">2 Buzzer</a></li>
                     <li><a href="https://exp-tech.de/products/37v-2000mah-lithium-polymer-akku-mit-jst-ph-anschluss">2 Akkus</a></li>
-                    <li></a>2 3d Gedruckte Gehäuse</li>
+                    <li>2 3D gedruckte Gehäuse</li>
                     <!-- Add more items as needed -->
                 </ul>
             </div>
@@ -146,12 +183,12 @@
                         <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
                     </a>
                 </h3>
-                Auf dem Pagger läuft ein Arduino Code der den Button un die komunikation zwischen Mqtt dem Display und dem Buzzer Regelt.
+                <button id="collapseButton1" class="button sidebar-toggle">Collapse Sidebar</button>
                 <div class="container">
-                    <div class="sidebar" id="sidebar1">
+                    <div class="sidebar1" id="sidebar1">
                         <h2>Files</h2>
-                        
-                        <!-- Switch buttons will be placed here -->
+                        <button class="sidebar-toggle">Toggle</button>
+                        <!-- Weitere Inhalte -->
                     </div>
                     <div class="file-navigator">
                         <div class="code-container" id="codeContainer1"></div>
@@ -162,13 +199,13 @@
                         <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
                     </a>
                 </h3>
+                <button id="collapseButton2" class="button sidebar-toggle">Collapse Sidebar</button>
+
                 <div class="container">
-                    <div class="sidebar" id="sidebar2">
+                    <div class="sidebar2" id="sidebar2">
                         <h2>Files</h2>
-                        <a href="https://github.com/schulsani/server" target="_blank" rel="noopener noreferrer">
-                            <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px;">
-                        </a>
-                        <!-- Switch buttons will be placed here -->
+                        <button class="sidebar-toggle">Toggle</button>
+                        <!-- Weitere Inhalte -->
                     </div>
                     <div class="file-navigator">
                         <div class="code-container" id="codeContainer2"></div>
@@ -176,13 +213,37 @@
                 </div>
             </div>
         </section>
-       
-        <!-- Necessary Items Section -->
-        
     </div>
+</div>
+<script>
+    // Add event listener for collapsing sidebar
+    const collapseButton = document.getElementById('collapseButton1');
+    collapseButton.addEventListener('click', function() {
+        const sidebar1 = document.querySelector('.sidebar1');
+        sidebar1.classList.toggle('collapsed');
+    });
+    const collapseButton2 = document.getElementById('collapseButton2');
+    collapseButton2.addEventListener('click', function() {
+        const sidebar2 = document.querySelector('.sidebar2');
+        sidebar2.classList.toggle('collapsed');
+    });
 
-    <!-- GitHub Widget Script -->
-    <script src="https://cdn.jsdelivr.net/npm/github-widget@1.0.0/dist/github-widget.min.js"></script>
-    <script src="github-widget/script.js"></script>
+    // JavaScript, um die Sidebar ein- und auszuklappen
+    document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToggles = document.querySelectorAll('.sidebar-toggle');
+
+        sidebarToggles.forEach(function(toggle) {
+            toggle.addEventListener('click', function() {
+                const sidebar = this.parentNode;
+                sidebar.classList.toggle('collapsed');
+            });
+        });
+    });
+</script>
+<!-- GitHub Widget Script -->
+<script src="https://cdn.jsdelivr.net/npm/github-widget@1.0.0/dist/github-widget.min.js"></script>
+<script src="github-widget/script.js"></script>
+
+
 </body>
 </html>

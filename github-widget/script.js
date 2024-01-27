@@ -1,26 +1,12 @@
+// Define repository URLs and history stacks
 var repoUrl1 = 'https://github.com/schulsani/client';
 var historyStack1 = [''];
 
 var repoUrl2 = 'https://github.com/schulsani/server';
 var historyStack2 = [''];
 
-// Handle popstate events for repository 1
-window.onpopstate = function(event) {
-    if (historyStack1.length > 1) {
-        historyStack1.pop();
-        loadRepo1(historyStack1[historyStack1.length - 1]);
-    }
-};
-
-// Handle popstate events for repository 2
-window.onpopstate = function(event) {
-    if (historyStack2.length > 1) {
-        historyStack2.pop();
-        loadRepo2(historyStack2[historyStack2.length - 1]);
-    }
-};
-
-function loadRepo1(path) {
+// Function to load repository 1
+function loadRepo1(path = '') {
     var repoApiUrl = repoUrl1.replace('github.com', 'api.github.com/repos').replace('/blob', '') + '/contents/' + path;
 
     fetch(repoApiUrl)
@@ -34,7 +20,13 @@ function loadRepo1(path) {
             codeContainer.innerHTML = '';
 
             // Add buttons to switch between client and server libraries
-            codeContainer1.style.height = '400px';
+
+            // Add a button to toggle sidebar visibility
+
+            // Add a button to go up one level in the hierarchy
+            if (historyStack1.length > 1) {
+                sidebar.innerHTML += '<button class="button" onclick="goUp(historyStack1, loadRepo1)">Go Up</button>';
+            }
 
             historyStack1 = [''];
 
@@ -45,7 +37,7 @@ function loadRepo1(path) {
                         var fileItem = document.createElement('div');
                         fileItem.classList.add('item');
                         fileItem.innerText = item.name;
-                        fileItem.addEventListener('click', function() {
+                        fileItem.addEventListener('click', function () {
                             var image = document.createElement('img');
                             image.src = item.download_url;
                             image.alt = item.name;
@@ -58,7 +50,7 @@ function loadRepo1(path) {
                         var fileItem = document.createElement('div');
                         fileItem.classList.add('item');
                         fileItem.innerText = item.name;
-                        fileItem.addEventListener('click', function() {
+                        fileItem.addEventListener('click', function () {
                             var downloadLink = document.createElement('a');
                             downloadLink.href = item.download_url;
                             downloadLink.download = item.name;
@@ -72,7 +64,7 @@ function loadRepo1(path) {
                         var fileItem = document.createElement('div');
                         fileItem.classList.add('item');
                         fileItem.innerText = item.name;
-                        fileItem.addEventListener('click', function() {
+                        fileItem.addEventListener('click', function () {
                             fetch(item.download_url)
                                 .then(response => response.text())
                                 .then(fileContent => {
@@ -89,7 +81,7 @@ function loadRepo1(path) {
                     var itemElement = document.createElement('div');
                     itemElement.classList.add('item');
                     itemElement.innerText = item.name;
-                    itemElement.addEventListener('click', function() {
+                    itemElement.addEventListener('click', function () {
                         historyStack1.push(path + '/' + item.name);
                         loadRepo1(path + '/' + item.name);
                     });
@@ -102,25 +94,14 @@ function loadRepo1(path) {
                     }
                 }
             });
-
-            // Add a button to go up one level in the hierarchy
-            if (historyStack1.length > 1) {
-                var backButton = document.createElement('button');
-                backButton.innerText = 'Go Up';
-                backButton.classList.add('button');
-                backButton.addEventListener('click', function() {
-                    historyStack1.pop();
-                    loadRepo1(historyStack1[historyStack1.length - 1]);
-                });
-                sidebar.appendChild(backButton);
-            }
         })
         .catch(error => {
             console.error('Error loading repository 1:', error);
         });
 }
 
-function loadRepo2(path) {
+// Function to load repository 2
+function loadRepo2(path = '') {
     var repoApiUrl = repoUrl2.replace('github.com', 'api.github.com/repos').replace('/blob', '') + '/contents/' + path;
 
     fetch(repoApiUrl)
@@ -134,7 +115,13 @@ function loadRepo2(path) {
             codeContainer.innerHTML = '';
 
             // Add buttons to switch between client and server libraries
-            codeContainer2.style.height = '400px';
+
+            // Add a button to toggle sidebar visibility
+
+            // Add a button to go up one level in the hierarchy
+            if (historyStack2.length > 1) {
+                sidebar.innerHTML += '<button class="button" onclick="goUp(historyStack2, loadRepo2)">Go Up</button>';
+            }
 
             historyStack2 = [''];
 
@@ -145,7 +132,7 @@ function loadRepo2(path) {
                         var fileItem = document.createElement('div');
                         fileItem.classList.add('item');
                         fileItem.innerText = item.name;
-                        fileItem.addEventListener('click', function() {
+                        fileItem.addEventListener('click', function () {
                             var image = document.createElement('img');
                             image.src = item.download_url;
                             image.alt = item.name;
@@ -158,7 +145,7 @@ function loadRepo2(path) {
                         var fileItem = document.createElement('div');
                         fileItem.classList.add('item');
                         fileItem.innerText = item.name;
-                        fileItem.addEventListener('click', function() {
+                        fileItem.addEventListener('click', function () {
                             var downloadLink = document.createElement('a');
                             downloadLink.href = item.download_url;
                             downloadLink.download = item.name;
@@ -172,7 +159,7 @@ function loadRepo2(path) {
                         var fileItem = document.createElement('div');
                         fileItem.classList.add('item');
                         fileItem.innerText = item.name;
-                        fileItem.addEventListener('click', function() {
+                        fileItem.addEventListener('click', function () {
                             fetch(item.download_url)
                                 .then(response => response.text())
                                 .then(fileContent => {
@@ -189,7 +176,7 @@ function loadRepo2(path) {
                     var itemElement = document.createElement('div');
                     itemElement.classList.add('item');
                     itemElement.innerText = item.name;
-                    itemElement.addEventListener('click', function() {
+                    itemElement.addEventListener('click', function () {
                         historyStack2.push(path + '/' + item.name);
                         loadRepo2(path + '/' + item.name);
                     });
@@ -202,25 +189,40 @@ function loadRepo2(path) {
                     }
                 }
             });
-
-            // Add a button to go up one level in the hierarchy
-            if (historyStack2.length > 1) {
-                var backButton = document.createElement('button');
-                backButton.innerText = 'Go Up';
-                backButton.classList.add('button');
-                backButton.addEventListener('click', function() {
-                    historyStack2.pop();
-                    loadRepo2(historyStack2[historyStack2.length - 1]);
-                });
-                sidebar.appendChild(backButton);
-            }
         })
         .catch(error => {
             console.error('Error loading repository 2:', error);
         });
 }
 
+// Function to go up one level in the hierarchy
+function goUp(historyStack, loadFunction) {
+    historyStack.pop();
+    loadFunction(historyStack[historyStack.length - 1]);
+}
 
-// Load the initial state for both repositories
-loadRepo1('');
-loadRepo2('');
+// Add event listeners for sidebar toggles and load initial state
+document.addEventListener('DOMContentLoaded', function () {
+    function setupSidebarToggle() {
+        const sidebarToggles = document.querySelectorAll('.sidebar-toggle');
+
+        sidebarToggles.forEach(function (toggle) {
+            toggle.addEventListener('click', function () {
+                const sidebar = this.closest('.sidebar');
+                sidebar.classList.toggle('collapsed');
+            });
+        });
+    }
+
+    setupSidebarToggle();
+
+    // Load the initial state for both repositories
+    loadRepo1('');
+    loadRepo2('');
+
+    const collapseButton = document.querySelector('.collapseButton');
+    collapseButton.addEventListener('click', function () {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.toggle('collapsed');
+    });
+});
