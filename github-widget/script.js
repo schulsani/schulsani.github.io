@@ -12,11 +12,11 @@ function loadRepo1(path = '') {
     fetch(repoApiUrl)
         .then(response => response.json())
         .then(data => {
-            var sidebar = document.getElementById('sidebar1');
+            var sidebar_1 = document.getElementById('sidebar1');
             var codeContainer = document.getElementById('codeContainer1');
 
             // Clear existing content
-            sidebar.innerHTML = '<h2>Files</h2>';
+            sidebar_1.innerHTML = '<h2>Files</h2>';
             codeContainer.innerHTML = '';
 
             // Add buttons to switch between client and server libraries
@@ -25,7 +25,7 @@ function loadRepo1(path = '') {
 
             // Add a button to go up one level in the hierarchy
             if (historyStack1.length > 1) {
-                sidebar.innerHTML += '<button class="button" onclick="goUp(historyStack1, loadRepo1)">Go Up</button>';
+                sidebar_1.innerHTML += '<button class="button" onclick="goUp(historyStack1, loadRepo1)">Go Up</button>';
             }
 
             historyStack1 = [''];
@@ -44,7 +44,7 @@ function loadRepo1(path = '') {
                             codeContainer.innerHTML = '';
                             codeContainer.appendChild(image);
                         });
-                        sidebar.appendChild(fileItem);
+                        sidebar_1.appendChild(fileItem);
                     } else if (item.name.toLowerCase().endsWith('.zip')) {
                         // Handle zip files
                         var fileItem = document.createElement('div');
@@ -58,7 +58,7 @@ function loadRepo1(path = '') {
                             codeContainer.innerHTML = '';
                             codeContainer.appendChild(downloadLink);
                         });
-                        sidebar.appendChild(fileItem);
+                        sidebar_1.appendChild(fileItem);
                     } else if (item.name.toLowerCase() !== 'readme.md') {
                         // Display other file types
                         var fileItem = document.createElement('div');
@@ -73,7 +73,7 @@ function loadRepo1(path = '') {
                                     codeContainer.innerHTML = `<pre>${encodedContent}</pre>`;
                                 });
                         });
-                        sidebar.appendChild(fileItem);
+                        sidebar_1.appendChild(fileItem);
                     }
                 }
 
@@ -85,7 +85,7 @@ function loadRepo1(path = '') {
                         historyStack1.push(path + '/' + item.name);
                         loadRepo1(path + '/' + item.name);
                     });
-                    sidebar.appendChild(itemElement);
+                    sidebar_1.appendChild(itemElement);
 
                     if (item.name.toLowerCase() !== 'readme.md') {
                         var folderIcon = document.createElement('i');
@@ -107,11 +107,11 @@ function loadRepo2(path = '') {
     fetch(repoApiUrl)
         .then(response => response.json())
         .then(data => {
-            var sidebar = document.getElementById('sidebar2');
+            var sidebar_2 = document.getElementById('sidebar2');
             var codeContainer = document.getElementById('codeContainer2');
 
             // Clear existing content
-            sidebar.innerHTML = '<h2>Files</h2>';
+            sidebar_2.innerHTML = '<h2>Files</h2>';
             codeContainer.innerHTML = '';
 
             // Add buttons to switch between client and server libraries
@@ -120,7 +120,7 @@ function loadRepo2(path = '') {
 
             // Add a button to go up one level in the hierarchy
             if (historyStack2.length > 1) {
-                sidebar.innerHTML += '<button class="button" onclick="goUp(historyStack2, loadRepo2)">Go Up</button>';
+                sidebar_2.innerHTML += '<button class="button" onclick="goUp(historyStack2, loadRepo2)">Go Up</button>';
             }
 
             historyStack2 = [''];
@@ -139,7 +139,7 @@ function loadRepo2(path = '') {
                             codeContainer.innerHTML = '';
                             codeContainer.appendChild(image);
                         });
-                        sidebar.appendChild(fileItem);
+                        sidebar_2.appendChild(fileItem);
                     } else if (item.name.toLowerCase().endsWith('.zip')) {
                         // Handle zip files
                         var fileItem = document.createElement('div');
@@ -153,7 +153,7 @@ function loadRepo2(path = '') {
                             codeContainer.innerHTML = '';
                             codeContainer.appendChild(downloadLink);
                         });
-                        sidebar.appendChild(fileItem);
+                        sidebar_2.appendChild(fileItem);
                     } else if (item.name.toLowerCase() !== 'readme.md') {
                         // Display other file types
                         var fileItem = document.createElement('div');
@@ -168,7 +168,7 @@ function loadRepo2(path = '') {
                                     codeContainer.innerHTML = `<pre>${encodedContent}</pre>`;
                                 });
                         });
-                        sidebar.appendChild(fileItem);
+                        sidebar_2.appendChild(fileItem);
                     }
                 }
 
@@ -180,7 +180,7 @@ function loadRepo2(path = '') {
                         historyStack2.push(path + '/' + item.name);
                         loadRepo2(path + '/' + item.name);
                     });
-                    sidebar.appendChild(itemElement);
+                    sidebar_2.appendChild(itemElement);
 
                     if (item.name.toLowerCase() !== 'readme.md') {
                         var folderIcon = document.createElement('i');
