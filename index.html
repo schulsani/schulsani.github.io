@@ -6,6 +6,7 @@
     <title>Schulsanis Website</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="github-widget/style.css">
+
     <style>
         /* Resetting some default styles */
         * {
@@ -65,6 +66,24 @@
                 overflow: hidden;
             }
         }
+        /* Adjusted hamburger menu button styles */
+/* Adjusted hamburger menu button styles within the embedded content */
+/* Adjusted hamburger menu button styles within the embedded content */
+.container .sidebar-toggle {
+    border: none;
+    background: none;
+    color: black;
+    position: absolute;
+    right: 20px; /* Adjust as needed */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
         /* Updated styles for browsers */
         .container {
             display: flex;
@@ -125,10 +144,7 @@
             border-radius: 5px;
         }
         /* CSS, um die Sidebar einzuklappen */
-        .sidebar1.collapsed {
-            width: 0;
-            overflow: hidden;
-        }
+        .sidebar1.collapsed,
         .sidebar2.collapsed {
             width: 0;
             overflow: hidden;
@@ -163,14 +179,13 @@
         <section>
             <div class="section-content">
                 <h2>Genutzte Gegenstände</h2>
-                <p>Diese Dinge würden im Projekt genutzt:</p>
+                <p>Diese Dinge wurden im Projekt genutzt:</p>
                 <ul>
                     <li><a href="https://www.idealo.de/preisvergleich/OffersOfProduct/200939546_-4-model-b-4gb-full-starter-kit-raspberry-pi-foundation.html">Raspberry Pi 4 Kit (Pi4 + Case + SD Card + Ladekabel)</a></li>
                     <li><a href="https://www.amazon.de/dp/B09J112YR7/ref=twister_B0B92JHXYN?_encoding=UTF8&psc=1">2 TTGO S3</a></li>
                     <li><a href="https://www.ebay.de/itm/354645204935">2 Buzzer</a></li>
                     <li><a href="https://exp-tech.de/products/37v-2000mah-lithium-polymer-akku-mit-jst-ph-anschluss">2 Akkus</a></li>
                     <li>2 3D gedruckte Gehäuse</li>
-                    <!-- Add more items as needed -->
                 </ul>
             </div>
         </section>
@@ -179,16 +194,21 @@
             <div class="section-content">
                 <h2>Code</h2>
                 <h3>Client
-                    <a href="https://github.com/schulsani/client" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-left: 10px;">
+                     <a href="https://github.com/schulsani/server" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-left: 10px;">
                         <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
                     </a>
                 </h3>
-                <button id="collapseButton1" class="button sidebar-toggle">Collapse Sidebar</button>
+                <!-- Replace the icon with an image -->
+<button id="collapseButton1" target="_blank" class="sidebar-toggle" rel="noopener noreferrer" style="display: inline-block; margin-left: 10px;">
+    <img src="bars.webp" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
+</button>
+Dieser Arduino Code läuft auf den ESP32 Geräten, die die Schulsanitäter mit sich tragen.
+Er wartet auf anfragen des Raspis um einen Buzzer auszulösen oder den Unfall zu bestätigen.
+                
                 <div class="container">
                     <div class="sidebar1" id="sidebar1">
                         <h2>Files</h2>
                         <button class="sidebar-toggle">Toggle</button>
-                        <!-- Weitere Inhalte -->
                     </div>
                     <div class="file-navigator">
                         <div class="code-container" id="codeContainer1"></div>
@@ -199,13 +219,15 @@
                         <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
                     </a>
                 </h3>
-                <button id="collapseButton2" class="button sidebar-toggle">Collapse Sidebar</button>
-
+                <button id="collapseButton2" target="_blank" class="sidebar-toggle" rel="noopener noreferrer" style="display: inline-block; margin-left: 10px;">
+                    <img src="bars.webp" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
+                </button>
+                Der Server Code der auf dem Raspberry Pi läuft besteht aus zwei teilen dem Node-Red Flow und dem Webserver.
+                Der Apache2 Webserver hostet das Formular und der Node-Red Flow verarbeitet die Daten und sendet sie an die ESP32 Geräte.
                 <div class="container">
                     <div class="sidebar2" id="sidebar2">
                         <h2>Files</h2>
                         <button class="sidebar-toggle">Toggle</button>
-                        <!-- Weitere Inhalte -->
                     </div>
                     <div class="file-navigator">
                         <div class="code-container" id="codeContainer2"></div>
@@ -243,7 +265,5 @@
 <!-- GitHub Widget Script -->
 <script src="https://cdn.jsdelivr.net/npm/github-widget@1.0.0/dist/github-widget.min.js"></script>
 <script src="github-widget/script.js"></script>
-
-
 </body>
 </html>
