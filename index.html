@@ -76,6 +76,31 @@
             max-width: 1200px;
             margin: 0 auto; /* Centers the viewer */
         }
+        /* Add this style to your existing CSS */
+.code-container {
+    max-height: 400px; /* Set the maximum height for the code container */
+    overflow: auto; /* Enable vertical scrolling */
+    border: 1px solid #ddd; /* Add a border for a clean look */
+    border-radius: 5px; /* Optional: Add rounded corners */
+    padding: 10px; /* Add padding for better readability */
+}
+
+/* Optional: Highlight line numbers in the code container */
+.code-container pre {
+    margin: 0;
+    padding: 0;
+    white-space: pre-wrap;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.code-container pre code {
+    display: block;
+    background-color: #f8f8f8;
+    line-height: 1.6;
+    padding: 10px;
+    border-radius: 5px;
+}
+
     </style>
 </head>
 <body>
@@ -92,7 +117,11 @@
             <div class="content">
                 <h1>Schulsani Alarmierung</h1>
                 <p>"In diesem Jugend-forscht-Projekt wird das Alarmierungssystem für Schulsanitäter an einer Schule verbessert. Das bisherige Verfahren erforderte, dass im Falle eines Unfalls während des Unterrichts oder in der Pause ein Schüler den Lehrer informiert, der dann das Sekretariat kontaktiert. Von dort aus wurden die Schulsanitäter per Lautsprecher gerufen und erhielten die Raumangabe. Dieses Verfahren wurde als zu umständlich empfunden, weshalb eine effizientere Lösung entwickelt wurde. Der Ansatz umfasst den Einsatz eines Raspberry Pi als Server und mehrerer ESP32-Geräte als Pager. Zur Programmierung werden C/C++, NodeRed sowie HTML/CSS/JavaScript für die Gestaltung der Webseite verwendet. Im Falle eines Alarms ertönt ein Signalton über einen Buzzer. Die ESP32-Geräte werden in Gehäusen untergebracht, damit die Schulsanitäter sie stets in das jeweilige Klassenzimmer mitnehmen können."</p>
-            </div>
+                <div class="youtube-container">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/0G_qQjxMCC4?si=PQHD1rPQsIA9EpiO&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                            
+
         </div>
         <section>
             <div class="section-content">
@@ -112,20 +141,33 @@
         <section>
             <div class="section-content">
                 <h2>Code</h2>
-                <h3>Client</h3>
+                <h3>Client
+                    <a href="https://github.com/schulsani/client" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-left: 10px;">
+                        <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
+                    </a>
+                </h3>
                 Auf dem Pagger läuft ein Arduino Code der den Button un die komunikation zwischen Mqtt dem Display und dem Buzzer Regelt.
                 <div class="container">
                     <div class="sidebar" id="sidebar1">
                         <h2>Files</h2>
+                        
                         <!-- Switch buttons will be placed here -->
                     </div>
                     <div class="file-navigator">
                         <div class="code-container" id="codeContainer1"></div>
                     </div>
                 </div>
+                <h3>Server
+                    <a href="https://github.com/schulsani/server" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-left: 10px;">
+                        <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px; vertical-align: middle;">
+                    </a>
+                </h3>
                 <div class="container">
                     <div class="sidebar" id="sidebar2">
                         <h2>Files</h2>
+                        <a href="https://github.com/schulsani/server" target="_blank" rel="noopener noreferrer">
+                            <img src="github_logo.png" alt="GitHub Logo" style="width: 20px; height: 20px; margin-right: 5px;">
+                        </a>
                         <!-- Switch buttons will be placed here -->
                     </div>
                     <div class="file-navigator">

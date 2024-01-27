@@ -104,18 +104,16 @@ function loadRepo1(path) {
             });
 
             // Add a button to go up one level in the hierarchy
-            // Add a button to go up one level in the hierarchy
-if (historyStack1.length > 1) {
-    var backButton = document.createElement('button');
-    backButton.innerText = 'Go Up';
-    backButton.classList.add('button');
-    backButton.addEventListener('click', function() {
-        historyStack1.pop();
-        loadRepo1(historyStack1[historyStack1.length - 1]);
-    });
-    sidebar.appendChild(backButton);
-}
-
+            if (historyStack1.length > 1) {
+                var backButton = document.createElement('button');
+                backButton.innerText = 'Go Up';
+                backButton.classList.add('button');
+                backButton.addEventListener('click', function() {
+                    historyStack1.pop();
+                    loadRepo1(historyStack1[historyStack1.length - 1]);
+                });
+                sidebar.appendChild(backButton);
+            }
         })
         .catch(error => {
             console.error('Error loading repository 1:', error);
@@ -221,6 +219,7 @@ function loadRepo2(path) {
             console.error('Error loading repository 2:', error);
         });
 }
+
 
 // Load the initial state for both repositories
 loadRepo1('');
